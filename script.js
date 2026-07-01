@@ -61,6 +61,8 @@ function controlarMusica() {
 // efectp de apertura y maquina de escribri 
 function abrirCarta(elemento) {
     const parrafo = elemento.querySelector('.contenido-carta');
+
+    if (!parrafo) return;
     
     // Si ya esta abierta, la cierra al tocarla de nuevo
     if (parrafo.classList.contains('abierta')) {
@@ -70,19 +72,25 @@ function abrirCarta(elemento) {
     parrafo.classList.add('abierta');
 
     // ejecuta el efecto maquina de escribir
-    if (!parrafo.dataset.escrito) {
+    if (!parrafo.dataset.escrito  !== "si") {
         const textoCompleto = parrafo.getAttribute('data-texto');
-        parrafo.dataset.escrito = true;
+        if (!textoCompleto) return;
+   
+        parrafo.dataset.escrito = "si";
+        const letras = Array.from(textoCompleto);
         let i = 0;
-        parrafo.innerHTML = "";
 
-        function escribir() {
-            if (i < textoCompleto.length) {
-                parrafo.innerHTML += textoCompleto.charAt(i);
+        parrafo.innerHTML = "";
+        const nodoTexto = document.createTextNode("");
+        parrafo.appendChild(nodoTexto);
+
+        const temporizador = setInterval(() => {
+            if (i < letras.length) {
+                nodoTexto.appendData(letras[i]);
                 i++;
-                setTimeout(escribir, 40);
+            } else {
+                clearInterval(temporizador);
             }
-        }
-        escribir();
-   }
+        }, 35);  // Ajustado a 35ms para que mantenga
+    }
 }
