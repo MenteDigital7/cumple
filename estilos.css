@@ -1,0 +1,126 @@
+/* ==========================================================================
+   ESTILOS GENERALES Y RESET
+   Optimizado 100% para pantallas de celulares.
+   ========================================================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(135deg, #f7f9fc 0%, #eef2f7 100%);
+    min-height: 100vh;
+    display: block;
+    padding: 30px 15px;
+    color: #333a42;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Encabezado Principal */
+header {
+    text-align: center;
+    margin-bottom: 35px;
+    padding: 0 10px;
+}
+
+header h1 {
+    color: #2b3a4a;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+header p {
+    font-size: 0.95rem;
+    color: #6b7c93;
+    font-weight: 400;
+}
+
+/* Contenedor de las Cartas */
+.contenedor-cartas {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+/* Estructura Base de cada Carta */
+.carta {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(43, 58, 74, 0.04);
+    border-left: 5px solid #6c5ce7;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+}
+
+/* Efecto táctil nativo para celulares al presionar */
+.carta:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 6px rgba(43, 58, 74, 0.02);
+    background-color: #fcfdfe;
+}
+
+/* Títulos de las Cartas */
+.carta h2 {
+    font-size: 1.15rem;
+    color: #2b3a4a;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Párrafos de las Cartas */
+.carta p {
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: #4f5e71;
+    margin-top: 12px;
+    text-align: justify;
+}
+
+/* ==========================================================================
+   VARIACIONES DE COLORES POR SECCIÓN
+   ========================================================================== */
+
+/* Carta 1: Bienvenida/Felicitación */
+.carta:nth-of-type(1) {
+    border-left-color: #ff7675;
+}
+
+/* Carta 2: Fiesta/Celebración */
+.carta:nth-of-type(2) {
+    border-left-color: #fdcb6e;
+}
+
+/* Carta 3: Los dos meses */
+.carta:nth-of-type(3) {
+    border-left-color: #00cec9;
+}
+
+/* Carta 4: El Premio / Pase de Compensación Especial */
+.carta_premio {
+    background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+    border-left: none;
+    box-shadow: 0 6px 16px rgba(108, 92, 231, 0.2);
+}
+
+.carta_premio:active {
+    background: linear-gradient(135deg, #5b4cc4 0%, #9088f3 100%);
+}
+
+.carta_premio h2 {
+    color: #ffffff;
+}
+
+.carta_premio p {
+    color: #f1f0ff;
+    font-weight: 500;
+}
