@@ -1,7 +1,17 @@
 //musica
-let musica = new Audio('gone.mp3');
-musica.loop = true;
-musica.preload = 'auto';
+const musica = new Audio();
+musica.src = "gone.mp3";
+musica.loop = false;
+musica.preload = "auto";
+
+let desbloqueado = false;
+
+document.addEventListener("click"), () => {
+    if (!desbloqueado) {
+        musica.play();
+        desbloqueado = true;
+    }
+}
 
 // configuracion de la fecha de cumpleaños
 const fechaCumple = new Date().getTime() - 1000; // 11 de julio de 2026
@@ -47,21 +57,19 @@ function lanzarConfeti() {
 function controlarMusica() {
     const boton = document.getElementById("boton-musica");
     
+    musica.play().then(() => {
+        if (!musica.paused) {
+            boton.innerHTML = "⏸️";
+        }
+    }).catch((err) => {
+        console.error("Error al reproducir la musica en el movil", err);
+    });
 
-    if (musica.paused) {
-        musica.play();
-            then(() => {
-                boton.innerHTML = "⏸️";
-            })
-            .catch(err => {
-                console.error("Error al reproducir la musica:", err)
-            });
-        
-    } else {
+    if (!musica.paused) {
         musica.pause();
         boton.innerHTML = "🎵";
-        boton.classList.remove("Sonando");
-    }    
+    }
+    
 }
 
 
