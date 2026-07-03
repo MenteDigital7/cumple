@@ -1,5 +1,7 @@
 //musica
-const musica = new Audio('gone.mp3');
+let musica = new Audio('gone.mp3');
+musica.loop = true;
+musica.preload = 'auto';
 
 // configuracion de la fecha de cumpleaños
 const fechaCumple = new Date().getTime() - 1000; // 11 de julio de 2026
@@ -24,7 +26,7 @@ function actualizarReloj() {
     const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
     // redenrizar en html
-    document.getElementById("reloj").innerHTML = '${dias}d ${horas}h ${minutos}m ${segundos}s';
+    document.getElementById("reloj").innerHTML = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
 }
 
 // iniciar y ejecutar el reloj cada segundo
@@ -43,16 +45,21 @@ function lanzarConfeti() {
 
 // control del boton de reproducir musica
 function controlarMusica() {
-    const bontonMusica = document.getElementById("boton-musica");
-    const audio = document.getElementById("musica-fondo");
+    const boton = document.getElementById("boton-musica");
+    
 
     if (musica.paused) {
         musica.play();
-        bonton.innerHTML = "⏸️";
-        boton.classList.remove("Sonando");
+            then(() => {
+                boton.innerHTML = "⏸️";
+            })
+            .catch(err => {
+                console.error("Error al reproducir la musica:", err)
+            });
+        
     } else {
         musica.pause();
-        boton.innerHTML = "";
+        boton.innerHTML = "🎵";
         boton.classList.remove("Sonando");
     }    
 }
