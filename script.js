@@ -63,6 +63,7 @@ function lanzarConfeti() {
 
 // control del boton de reproducir musica
 function controlarMusica() {
+    console.log("SE EJECUTÓ controlarMusica");
     const audioHTML = document.getElementById("fondo-musica");
     const boton = document.getElementById("boton-musica");
     console.log(audioHTML.paused);
