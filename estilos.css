@@ -477,6 +477,9 @@ header p {
     opacity: 0;
     transform: translate(25px);
 }
+.no-mostrar {
+    display: none !important;
+}
 .aparecer {
     opacity: 1;
     transform: translate(0);

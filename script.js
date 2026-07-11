@@ -343,7 +343,7 @@ function abrirCarta(elemento) {
                     ) {
 
                         setTimeout(() => {
-
+                            siguienteCarta.classList.remove("no-mostrar");
                             siguienteCarta.classList.remove("oculto");
                             siguienteCarta.classList.add("aparecer");
 
@@ -361,7 +361,7 @@ function abrirCarta(elemento) {
 
                         const botonRegalo =
                             document.getElementById("boton-ultimo-regalo");
-
+                        botonRegalo.classList.remove("no-mostrar");
                         botonRegalo.classList.remove("oculto");
                         botonRegalo.classList.add("aparecer");
 
@@ -452,6 +452,7 @@ function abrirUltimoRegalo() {
 
         botonNoTocar.style.display = "flex";
 
+        botonNoTocar.classList.remove("no.mostrar");
         botonNoTocar.classList.remove("oculto");
         botonNoTocar.classList.add("visible");
         botonNoTocar.classList.add("aparecer");
