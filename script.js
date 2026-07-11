@@ -17,8 +17,8 @@ const mensajesNoTocar = [
 const audioHTML = document.getElementById("fondo-musica");
 const boton = document.getElementById("boton-musica");
 const iconoPath = document.getElementById("icono-path");
-//const fechaCumple = new Date().getTime() - 1000;
-const fechaCumple = new Date().getTime() + 30000;
+const fechaCumple = new Date().getTime() - 1000;
+//const fechaCumple = new Date().getTime() + 10000;
 //const fechaCumple = new Date("2026-07-11T00:00:00").getTime();
 
 //===========================
@@ -33,6 +33,9 @@ function actualizarReloj() {
         clearInterval(intervalo);
         document.getElementById("seccion-reloj").style.display = "none";
         document.getElementById("contenido-regalo").style.display = "block";
+        document
+                .getElementById("fondo-principal")
+                .classList.add("regalo");
         document.getElementById("boton-musica").style.display = "flex";
         
         mostrarRegalo();
@@ -122,6 +125,7 @@ function mostrarRegalo() {
     
     // aparece la carta
     setTimeout(() => {
+        primeraCarta.classList.remove("no-mostrar");
         primeraCarta.classList.remove("oculto");
         primeraCarta.classList.add("aparecer");
         

@@ -18,6 +18,8 @@
 </head>
   
 <body>
+    
+    <div id="fondo-principal"></div>
 
     <!-- ==========================
          FONDO ANIMADO
@@ -44,12 +46,14 @@
          CUENTA REGRESIVA
     ========================== -->
 
-     <div id="seccion-reloj" class="contenedor-reloj">
-        <div class="emoji-regalo">🎁</div>
-        <h2>Tu regalo estara listo en...</h2>
-        <div id="reloj" class="reloj-numeros">00d 00h 00m 00s</div>
-        <p>✨ Gracias por esperar ✨</p>
-     </div>
+        <div id="seccion-reloj">
+            <div class="contenedor-reloj">
+                <div class="emoji-regalo">🎁</div>
+                <h2>Tu regalo estara listo en...</h2>
+                <div id="reloj" class="reloj-numeros">00d 00h 00m 00s</div>
+                <p>✨ Gracias por esperar ✨</p>
+            </div> 
+        </div>
 
     <!-- ==========================
      CONTENIDO PRINCIPAL
@@ -235,7 +239,7 @@
         <!-- Botón secreto -->
         <div id="zona-no-tocar" class="no-mostrar">
 
-            <div id="dialogo-no-tocar" class="oculto"></div>
+            <div id="dialogo-no-tocar" class="oculto no-mostrar"></div>
 
             <button id="boton-no-tocar" class="oculto">
                 🚫 No tocar
