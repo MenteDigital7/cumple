@@ -17,7 +17,8 @@ const mensajesNoTocar = [
 const audioHTML = document.getElementById("fondo-musica");
 const boton = document.getElementById("boton-musica");
 const iconoPath = document.getElementById("icono-path");
-const fechaCumple = new Date().getTime() - 1000;
+//const fechaCumple = new Date().getTime() - 1000;
+const fechaCumple = new Date().getTime() + 20000;
 //const fechaCumple = new Date("2026-07-11T00:00:00").getTime();
 
 //===========================
