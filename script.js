@@ -500,7 +500,7 @@ function abrirUltimoRegalo() {
 
 
     function botonNoTocar(){
-    console.count("CLICK");
+    document.activeElement.blur();
         contadorNoTocar++;
     const boton = document.getElementById("boton-no-tocar");
 

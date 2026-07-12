@@ -456,7 +456,7 @@ header p{
 #boton-musica:active{
     transform: scale(.94);
 }
-#boton-musica:focus{
+#boton-musica:focus-visible{
     outline: none;
 }
 #boton-musica.reproduciendo #icono-musica{
@@ -736,7 +736,7 @@ header p{
     top:35px;
     width:330px;
     min-height:430px;
-    transform:translateX(-50%) translateY(35px);
+    transform:translateX(-50%);
     background:
 
             linear-gradient(
@@ -841,7 +841,8 @@ header p{
     font-size:16px;
     font-weight:700;
     color:white;
-    cursor:pointer;
+    cursor:pointer;-webkit-tap-highlight-color: transparent;
+    outline:none;
     background:linear-gradient(135deg,#ff4d6d,#d90429);
     box-shadow:
         0 10px 25px rgba(217,4,41,.35);
@@ -849,11 +850,14 @@ header p{
         transform .18s ease,
         box-shadow .18s ease,
         filter .18s ease;
+        
 
 }
 
-#boton-no-tocar.visible{
+#boton-no-tocar.focus-visible{
     display:flex;
+     outline:none;
+
 }
 
 #boton-no-tocar:hover{
