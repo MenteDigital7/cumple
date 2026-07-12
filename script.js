@@ -557,8 +557,10 @@ function abrirUltimoRegalo() {
             lanzarConfeti();
         }
     }
-alert(
+window.addEventListener("load", () => {
+    alert(
 `body: ${document.body.scrollWidth}
 html: ${document.documentElement.scrollWidth}
-viewport: ${window.visualViewport.width}`
-);
+viewport: ${window.innerWidth}`
+    );
+});
