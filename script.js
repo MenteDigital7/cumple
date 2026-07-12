@@ -6,10 +6,10 @@ let reproduciedo = false;
 let contadorNoTocar = 0;
 
 const mensajesNoTocar = [
-    "😶 Te dije queno lo tocaras...",
+    "😶 Te dije que no lo tocaras...",
     "🤨 ¿Otra vez?",
     "😂 Ya sabía que ibas a volver.",
-    "🙄 Bueno... ya que estás aquí.",
+    "🙄 Bueno... ya que estás aquí, toca otra vez",
     "🎉 ¡Feliz cumpleaños otra vez! ❤️"
 
 ];
@@ -17,8 +17,8 @@ const mensajesNoTocar = [
 const audioHTML = document.getElementById("fondo-musica");
 const boton = document.getElementById("boton-musica");
 const iconoPath = document.getElementById("icono-path");
-const fechaCumple = new Date().getTime() - 1000;
-//const fechaCumple = new Date().getTime() + 10000;
+//const fechaCumple = new Date().getTime() - 1000;
+const fechaCumple = new Date().getTime() + 20000;
 //const fechaCumple = new Date("2026-07-11T00:00:00").getTime();
 
 //===========================
@@ -452,11 +452,16 @@ function abrirUltimoRegalo() {
     
     // Mostrar botón "No tocar" después de una pequeña pausa
     setTimeout(() => {
+         console.log("LLEGUÉ AL BOTÓN 🚀");
+        const zona = document.getElementById("zona-no-tocar");
         const botonNoTocar = document.getElementById("boton-no-tocar");
-
+        console.log(zona);
+        console.log(botonNoTocar);
+        zona.classList.remove("no-mostrar");
+        zona.classList.add("activa");
         botonNoTocar.style.display = "flex";
 
-        botonNoTocar.classList.remove("no.mostrar");
+        botonNoTocar.classList.remove("no-mostrar");
         botonNoTocar.classList.remove("oculto");
         botonNoTocar.classList.add("visible");
         botonNoTocar.classList.add("aparecer");
@@ -464,45 +469,60 @@ function abrirUltimoRegalo() {
         botonNoTocar.classList.remove("pop");
         void botonNoTocar.offsetWidth;
         botonNoTocar.classList.add("pop");
-    },4200);
+    },3800);
+} 
 
-}
 
-
-function botonNoTocar(){
-
-    contadorNoTocar++;
-
+    function botonNoTocar(){
+    console.count("CLICK");
+        contadorNoTocar++;
+    
     const dialogo = document.getElementById("dialogo-no-tocar");
+    
+    const mensaje = mensajesNoTocar[
+    Math.min(contadorNoTocar - 1, mensajesNoTocar.length - 1)
+    ];
 
-    dialogo.textContent =
-        mensajesNoTocar[
-            Math.min(
-                contadorNoTocar-1,
-                mensajesNoTocar.length-1
-            )
-        ];
-    dialogo.classList.remove("oculto");
-    dialogo.classList.remove("aparecer");
-    void dialogo.offsetWidth;
-    dialogo.classList.add("aparecer");
+        console.log("Mostrando:", mensaje);
 
-    clearTimeout(dialogo.timer);
+        dialogo.textContent = mensaje;   
+ 
 
-    dialogo.timer = setTimeout(() => {
+        
+        
+        dialogo.classList.remove("no-mostrar");
+        dialogo.classList.remove("oculto");
 
-        dialogo.classList.remove("aparecer");
-        dialogo.classList.add("oculto");
+        dialogo.textContent =
+            mensajesNoTocar[
+                Math.min(contadorNoTocar - 1, mensajesNoTocar.length - 1)
+            ];
 
-    },2000);
+        dialogo.style.display = "block";
+        requestAnimationFrame(()=>{
+            dialogo.style.opacity="1";
+            dialogo.style.transform = "translateX(-50%) scale(.9)";
+        });
+        
+        clearTimeout(dialogo.timer);
 
-    if(contadorNoTocar===5){
+        dialogo.timer = setTimeout(() => {
 
-        lanzarConfeti();
+            dialogo.style.opacity = "0";
+            dialogo.style.transform = "translateX(-50%) scale(.9)";
+            setTimeout(() => {
+                dialogo.style.display = "none";
+            }, 300);
 
-        document.getElementById("boton-no-tocar").textContent =
-        "😂 Ya eres feliz, ¿no?";
+        }, 2000);
 
+        if(contadorNoTocar===5){
+
+            lanzarConfeti();
+
+            document.getElementById("boton-no-tocar").textContent =
+            "😂 Ya eres feliz, ¿no?";
+
+        }
     }
-
-}
+    
