@@ -4,6 +4,10 @@
 let intervaloFade = null;
 let reproduciedo = false;
 let contadorNoTocar = 0;
+let modoLibre = false;
+
+const botonNoTocarHTML = document.getElementById("boton-no-tocar");
+
 
 const mensajesNoTocar = [
     "😶 Te dije que no lo tocaras...",
@@ -11,7 +15,13 @@ const mensajesNoTocar = [
     "😂 Ya sabía que ibas a volver.",
     "🙄 Bueno... ya que estás aquí, toca otra vez",
     "🎉 ¡Feliz cumpleaños otra vez! ❤️"
-
+];
+const estadosBoton = [
+    "🚫 No tocar",
+    "😐 En serio...",
+    "😒 Ya basta...",
+    "😤 Última advertencia...",
+    "😂 Ya eres feliz, ¿no?"
 ];
 
 const audioHTML = document.getElementById("fondo-musica");
@@ -272,7 +282,7 @@ function controlarMusica() {
 // EFECTO DE MAQUINA DE ESCRIBIR
 //==========================================
 function abrirCarta(elemento) {
-
+    console.log("Modo libre:", modoLibre);
     const carta = elemento;
     const parrafo = carta.querySelector(".contenido-carta");
 
@@ -336,35 +346,36 @@ function abrirCarta(elemento) {
                 parrafo.dataset.indice = 0;
                 textoSpan.textContent = textoCompleto;
                 cursor.style.display = "none";
+  
+                if (!esUltimaCarta && !modoLibre) {
 
-                if (!esUltimaCarta) {
+                const siguienteCarta = carta.nextElementSibling;
 
-                    const siguienteCarta = carta.nextElementSibling;
+                if (
+                    siguienteCarta &&
+                    siguienteCarta.classList.contains("carta")
+                ) {
 
-                    if (
-                        siguienteCarta &&
-                        siguienteCarta.classList.contains("carta")
-                    ) {
+                    setTimeout(() => {
 
-                        setTimeout(() => {
-                            siguienteCarta.classList.remove("no-mostrar");
-                            siguienteCarta.classList.remove("oculto");
-                            siguienteCarta.classList.add("aparecer");
+                        siguienteCarta.classList.remove("no-mostrar");
+                        siguienteCarta.classList.remove("oculto");
+                        siguienteCarta.classList.add("aparecer");
 
-                            siguienteCarta.classList.remove("pop");
-                            void siguienteCarta.offsetWidth;
-                            siguienteCarta.classList.add("pop");
+                        siguienteCarta.classList.remove("pop");
+                        void siguienteCarta.offsetWidth;
+                        siguienteCarta.classList.add("pop");
 
-                        }, 300);
+                    },300);
 
-                    }
+                }
 
                 } else {
 
                     setTimeout(() => {
 
                         const botonRegalo =
-                            document.getElementById("boton-ultimo-regalo");
+                        document.getElementById("boton-ultimo-regalo");
                         botonRegalo.classList.remove("no-mostrar");
                         botonRegalo.classList.remove("oculto");
                         botonRegalo.classList.add("aparecer");
@@ -406,22 +417,24 @@ audioHTML.onended =() => {
 // FUNCIONES DEL ULTIMO REGAL0
 //=======================================
 function abrirUltimoRegalo() {
-    
+    console.log("Empieza abrirUltimoRegalo");
+
     const boton = document.getElementById("boton-ultimo-regalo");
     const sobre = document.getElementById("sobre-regalo");
     const sobreAnimado= sobre.querySelector(".sobre");
     
     boton.classList.remove("pop");
     void boton.offsetWidth;
-    boton.classList.add("pop")
-
+    boton.classList.add("pop");
+    
     setTimeout(() => {
         boton.classList.add("ocultar-boton");
-    },200);
+    },350);
     
     setTimeout(() => {
         sobre.style.display = "block";
         sobre.classList.add("aparecer");
+        console.log("Sobre aparece");
     },500);
 
     setTimeout(() => {
@@ -432,15 +445,18 @@ function abrirUltimoRegalo() {
 
     setTimeout(() => {
         sobreAnimado.classList.add("abierto");
+        console.log("Sobre abre");
     },1400);
 
     setTimeout(() => {
         const vale = document.getElementById("vale-compensacion");
         vale.classList.add("mostrar");
+        console.log("Vale aparece");
     },1800);
 
     setTimeout(() => {
         sobreAnimado.classList.add("descansar")
+         console.log("Vale termina");
     },3200);
    setTimeout(() => {
 
@@ -452,11 +468,11 @@ function abrirUltimoRegalo() {
     
     // Mostrar botón "No tocar" después de una pequeña pausa
     setTimeout(() => {
-         console.log("LLEGUÉ AL BOTÓN 🚀");
+        
         const zona = document.getElementById("zona-no-tocar");
         const botonNoTocar = document.getElementById("boton-no-tocar");
-        console.log(zona);
-        console.log(botonNoTocar);
+        
+       
         zona.classList.remove("no-mostrar");
         zona.classList.add("activa");
         botonNoTocar.style.display = "flex";
@@ -465,31 +481,51 @@ function abrirUltimoRegalo() {
         botonNoTocar.classList.remove("oculto");
         botonNoTocar.classList.add("visible");
         botonNoTocar.classList.add("aparecer");
+        botonNoTocar.classList.add("tentacion");
 
         botonNoTocar.classList.remove("pop");
         void botonNoTocar.offsetWidth;
         botonNoTocar.classList.add("pop");
-    },3800);
+        console.log("Mostrar botón");
+
+    },3500);
+    setTimeout(() => {
+
+    modoLibre = true;
+
+    console.log("Modo libre activado ✅");
+
+    },4500);
 } 
 
 
     function botonNoTocar(){
     console.count("CLICK");
         contadorNoTocar++;
-    
+    const boton = document.getElementById("boton-no-tocar");
+
+    boton.disabled = true;
+
+    setTimeout(()=>{
+        boton.disabled = false;
+    },250);
     const dialogo = document.getElementById("dialogo-no-tocar");
     
     const mensaje = mensajesNoTocar[
-    Math.min(contadorNoTocar - 1, mensajesNoTocar.length - 1)
-    ];
-
-        console.log("Mostrando:", mensaje);
+        Math.min(contadorNoTocar - 1, mensajesNoTocar.length - 1)
+        ];
 
         dialogo.textContent = mensaje;   
- 
+        
+        botonNoTocarHTML.textContent =
+        estadosBoton[
+            Math.min(contadorNoTocar - 1, estadosBoton.length - 1)
+        ];
 
-        
-        
+        botonNoTocarHTML.classList.remove("pop");
+        void botonNoTocarHTML.offsetWidth;
+        botonNoTocarHTML.classList.add("pop");
+
         dialogo.classList.remove("no-mostrar");
         dialogo.classList.remove("oculto");
 
@@ -501,7 +537,7 @@ function abrirUltimoRegalo() {
         dialogo.style.display = "block";
         requestAnimationFrame(()=>{
             dialogo.style.opacity="1";
-            dialogo.style.transform = "translateX(-50%) scale(.9)";
+            dialogo.style.transform = "translateX(0) scale(1)";
         });
         
         clearTimeout(dialogo.timer);
@@ -509,7 +545,7 @@ function abrirUltimoRegalo() {
         dialogo.timer = setTimeout(() => {
 
             dialogo.style.opacity = "0";
-            dialogo.style.transform = "translateX(-50%) scale(.9)";
+            dialogo.style.transform = "translateX(15px) scale(.85)";
             setTimeout(() => {
                 dialogo.style.display = "none";
             }, 300);
@@ -519,10 +555,6 @@ function abrirUltimoRegalo() {
         if(contadorNoTocar===5){
 
             lanzarConfeti();
-
-            document.getElementById("boton-no-tocar").textContent =
-            "😂 Ya eres feliz, ¿no?";
-
         }
     }
     
