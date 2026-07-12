@@ -393,11 +393,14 @@ function abrirCarta(elemento) {
 
         }
 
-        requestAnimationFrame(bucleEscritura);
-
+        setTimeout(() => {
+            bucleEscritura(performance.now());
+        },16);
     }
 
-    requestAnimationFrame(bucleEscritura);
+    setTimeout(() => {
+        bucleEscritura(performance.now());
+    },16);
 
 }
 
