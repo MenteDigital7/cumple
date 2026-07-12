@@ -13,14 +13,14 @@ const mensajesNoTocar = [
     "😶 Te dije que no lo tocaras...",
     "🤨 ¿Otra vez?",
     "😂 Ya sabía que ibas a volver.",
-    "🙄 Bueno... ya que estás aquí, toca otra vez",
-    "🎉 ¡Feliz cumpleaños otra vez! ❤️"
+    "🙄 Sabía que no ibas a resistirte...",
+    "🥹 Si llegaste hasta aquí... gracias por leer todo. Espero que te haya gustado este pequeño detalle ❤️"
 ];
 const estadosBoton = [
     "🚫 No tocar",
     "😐 En serio...",
     "😒 Ya basta...",
-    "😤 Última advertencia...",
+    "👉 Otra vez...",
     "😂 Ya eres feliz, ¿no?"
 ];
 
