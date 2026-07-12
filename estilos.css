@@ -42,17 +42,10 @@ html {
 }
 
 body {
-    overscroll-behavior: none;
-    background: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;      /* Centra horizontalmente */
-    justify-content: center;   /* Centra verticalmente (si es necesario) */
-    min-height: 100vh;         /* Ocupa el 100% de la pantalla */
-    margin: 0;
-    padding: 20px;             /* Evita que toque los bordes en celulares */
-    box-sizing: border-box;
-    
+    margin:0;
+    background:none;
+    min-height:100vh;
+    overflow-x:hidden;
 }
 main{
     background: transparent !important;
@@ -628,11 +621,11 @@ header p{
 }
 /* cursor de la maquina de escrivir*/
 .cursor{
-    display:inline-block;
+    display:inline;
     animation: parpadear 0.8s infinite;
 }
 .texto{
-    display:inline-block;
+    display:inline;
     max-width:100%;
     word-break:break-word;
     overflow-wrap:break-word;
@@ -848,8 +841,7 @@ header p{
     font-size:16px;
     font-weight:700;
     color:white;
-    cursor:pointer;-webkit-tap-highlight-color: transparent;
-    outline:none;
+    cursor:pointer;
     background:linear-gradient(135deg,#ff4d6d,#d90429);
     box-shadow:
         0 10px 25px rgba(217,4,41,.35);
@@ -857,14 +849,14 @@ header p{
         transform .18s ease,
         box-shadow .18s ease,
         filter .18s ease;
-        
+    -webkit-tap-highlight-color: transparent;   
 
 }
-
-#boton-no-tocar.focus-visible{
+button:focus{
+    outline: none;
+}
+#boton-no-tocar.visible{
     display:flex;
-     outline:none;
-
 }
 
 #boton-no-tocar:hover{

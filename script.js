@@ -307,6 +307,13 @@ function abrirCarta(elemento) {
     cursor.style.display = "inline";
 
     const textoCompleto = parrafo.dataset.texto;
+    if (parrafo.dataset.escrito === "true") {
+
+    textoSpan.textContent = textoCompleto;
+    cursor.style.display = "none";
+
+    return;
+    }
     let i = Number(parrafo.dataset.indice);
 
     textoSpan.textContent = textoCompleto.slice(0, i);
@@ -343,7 +350,7 @@ function abrirCarta(elemento) {
             } else {
 
                 // Terminó de escribir
-                parrafo.dataset.indice = 0;
+                parrafo.dataset.indice =  "true";
                 textoSpan.textContent = textoCompleto;
                 cursor.style.display = "none";
   
@@ -393,14 +400,11 @@ function abrirCarta(elemento) {
 
         }
 
-        setTimeout(() => {
-            bucleEscritura(performance.now());
-        },16);
+        requestAnimationFrame(bucleEscritura);
+
     }
 
-    setTimeout(() => {
-        bucleEscritura(performance.now());
-    },16);
+    requestAnimationFrame(bucleEscritura);
 
 }
 
@@ -503,7 +507,7 @@ function abrirUltimoRegalo() {
 
 
     function botonNoTocar(){
-    document.activeElement.blur();
+    
         contadorNoTocar++;
     const boton = document.getElementById("boton-no-tocar");
 
@@ -559,11 +563,7 @@ function abrirUltimoRegalo() {
 
             lanzarConfeti();
         }
+    botonNoTocarHTML.blur();    
     }
-window.addEventListener("load", () => {
-    alert(
-`body: ${document.body.scrollWidth}
-html: ${document.documentElement.scrollWidth}
-viewport: ${window.innerWidth}`
-    );
-});
+
+
