@@ -282,12 +282,13 @@ header p{
     cursor: pointer;
     
     z-index: 1;
-    
     transition:
-        /*transform .25s ease,*/
+        transform .25s ease,
         box-shadow 0.35s ease,
         background-color 0.35s ease,
         border-color 0.35s ease;
+    user-select: none;
+    -webkit-user-select: none;
 }
 .carta.abierta{
     z-index:10;
@@ -613,6 +614,21 @@ header p{
     }
 
 }
+@media (max-width:480px){
+
+    #dialogo-no-tocar{
+
+        width:90%;
+        max-width:320px;
+
+        font-size:16px;
+
+        padding:16px 20px;
+
+        bottom:75px;
+    }
+
+}
 /*==============================
   UTILIDADES
 ==============================*/
@@ -935,18 +951,26 @@ button:focus{
         opacity .25s,
         scale .25s;
 }
-@media (max-width:480px){
+/* Elimina el resaltado azul al tocar cualquier elemento */
+*{
+    -webkit-tap-highlight-color: transparent;
+}
 
-    #dialogo-no-tocar{
+/* Evita el borde azul de enfoque */
+button,
+.carta,
+#boton-musica,
+#boton-ultimo-regalo,
+#boton-no-tocar{
 
-        width:90%;
-        max-width:320px;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 
-        font-size:16px;
+}
 
-        padding:16px 20px;
+button:focus,
+.carta:focus{
 
-        bottom:75px;
-    }
+    outline: none;
 
 }
