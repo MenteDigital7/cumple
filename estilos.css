@@ -335,18 +335,18 @@ header p{
 }
 /* estado oculto de la carta */
 .contenido-carta {
-    display: block !important;
-    max-height: 0;
-    opacity: 0;
-    position: relative;
-    overflow: hidden;
-    margin-top: 0;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #4a5568;
-    transition: opacity 0.3s ease;
-    white-space: pre-line;
-     width:100%;
+    display:block;
+    width:100%;
+    box-sizing:border-box;
+
+    max-height:0;
+    opacity:0;
+    overflow:hidden;
+
+    white-space:pre-line;
+
+    word-break:break-word;
+    overflow-wrap:anywhere;
     
 }
 
@@ -628,7 +628,14 @@ header p{
 }
 /* cursor de la maquina de escrivir*/
 .cursor{
+    display:inline-block;
     animation: parpadear 0.8s infinite;
+}
+.texto{
+    display:inline-block;
+    max-width:100%;
+    word-break:break-word;
+    overflow-wrap:break-word;
 }
 .tentacion{
 
